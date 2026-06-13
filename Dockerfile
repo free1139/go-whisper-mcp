@@ -7,7 +7,7 @@ ARG MAIN=.
 # =========================================================
 # ============== CPU 构建阶段（无 CUDA） ===================
 # =========================================================
-FROM ubuntu:22.04 AS cpu-builder
+FROM docker.1ms.run/library/debian:12.8 AS cpu-builder
 ARG GO_VERSION
 ARG WHISPER_REF
 ARG BUILD_JOBS
@@ -122,7 +122,7 @@ RUN CGO_ENABLED=1 go build -v -x -o /app/bin/server ${MAIN}
 # =========================================================
 # ============== CPU 运行阶段 =============================
 # =========================================================
-FROM ubuntu:22.04 AS cpu
+FROM git@github.com:free1139/go-whisper-mcp.git AS cpu
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg ca-certificates libgomp1 \
