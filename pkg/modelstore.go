@@ -98,10 +98,13 @@ func normalizeSpecToFilename(spec string) string {
 }
 
 func candidateURLs(filename string) []string {
-	base := "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/"
 	return []string{
-		base + filename,
-		// 按需添加镜像
+		// HF 镜像（国内可访问）
+		"https://hf-mirror.com/ggerganov/whisper.cpp/resolve/main/" + filename,
+		// ModelScope 镜像
+		"https://www.modelscope.cn/models/studio219/whisper.cpp/resolve/main/" + filename,
+		// 官方源（兜底）
+		"https://huggingface.co/ggerganov/whisper.cpp/resolve/main/" + filename,
 	}
 }
 

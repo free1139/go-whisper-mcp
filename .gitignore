@@ -19,3 +19,7 @@ samples
 media
 
 go-whisper-mcp*
+bin/
+.reasonix/
+.codegraph/
+
